@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GISMA University of Applied Sciences & German Visa Guide 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gisma: {
+                            navy: '#0F2027',
+                            slate: '#2C5364',
+                            red: '#D32F2F',
+                            gold: '#D4AF37',
+                            light: '#F8FAFC',
+                            accent: '#1E3A8A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-btn.active {
+            border-bottom: 3px solid #D32F2F;
+            color: #0F2027;
+            font-weight: 700;
+            background-color: #F1F5F9;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Navigation Header -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-red-600 text-white font-bold text-xl px-3 py-1.5 rounded-lg tracking-wider">
+                        GISMA
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold leading-tight">GISMA University of Applied Sciences</h1>
+                        <p class="text-xs text-slate-400">Member of GUS Germany GmbH (GGG) | Official International Portal 2026</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="https://www.gisma.com" target="_blank" class="text-xs text-slate-300 hover:text-white flex items-center gap-1 transition">
+                        <i data-lucide="globe" class="w-4 h-4"></i> gisma.com
+                    </a>
+                    <a href="https://anabin.kmk.org" target="_blank" class="text-xs text-slate-300 hover:text-white flex items-center gap-1 transition">
+                        <i data-lucide="database" class="w-4 h-4"></i> Anabin DB
+                    </a>
+                    <a href="https://india.diplo.de" target="_blank" class="text-xs text-slate-300 hover:text-white flex items-center gap-1 transition">
+                        <i data-lucide="file-check" class="w-4 h-4"></i> German Embassy (India)
+                    </a>
+                    <button onclick="toggleCurrency()" id="currencyToggleBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-md flex items-center gap-1 shadow">
+                        <i data-lucide="coins" class="w-4 h-4"></i> View in INR (₹)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Interactive Country & Score Calculator Banner -->
+        <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-700">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="bg-red-600 text-xs uppercase font-bold tracking-wider px-2.5 py-1 rounded">Interactive Tool</span>
+                <h2 class="text-xl sm:text-2xl font-bold">Country & Academic Score Eligibility Calculator</h2>
+            </div>
+            <p class="text-sm text-slate-300 mb-6">Select your country of origin and prior academic grade range to calculate entry route, discount eligibility, APS requirements, and initial tuition deposit amounts.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+                <!-- Country Selection -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1.5">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-red-400"></i> Country of Application / Origin
+                    </label>
+                    <select id="countrySelect" onchange="calculateEligibility()" class="w-full bg-slate-900 border border-slate-600 text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+                        <option value="India">India (APS Mandatory)</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Vietnam">Vietnam (APS Mandatory)</option>
+                        <option value="China">China (APS Mandatory)</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="USA">USA / Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="LATAM">Latin America (LATAM)</option>
+                        <option value="Post-Soviet">Post-Soviet Countries (CIS)</option>
+                        <option value="SEA">Southeast Asia (Other)</option>
+                        <option value="MENA">MENA Region</option>
+                        <option value="EU">EU / Expat in Germany</option>
+                    </select>
+                </div>
+
+                <!-- Academic Score Selection -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1.5">
+                        <i data-lucide="award" class="w-4 h-4 text-amber-400"></i> High School / Bachelor Score Range
+                    </label>
+                    <select id="scoreSelect" onchange="calculateEligibility()" class="w-full bg-slate-900 border border-slate-600 text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+                        <option value="tier1">> 89.01% / Grade A / GPA 3.8+ (High Achiever Tier 1)</option>
+                        <option value="tier2">70.00% - 89.00% / Grade B / GPA 3.2-3.79 (Tier 2)</option>
+                        <option value="tier3">60.00% - 69.99% / Grade C / GPA 2.7-3.19 (Tier 3)</option>
+                        <option value="tier4">50.00% - 59.99% / Grade D / GPA 2.0-2.69 (Tier 4)</option>
+                        <option value="tier5">&lt; 50.00% / Grade E (Below Standard)</option>
+                    </select>
+                </div>
+
+                <!-- Target Program Type -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1.5">
+                        <i data-lucide="book-open" class="w-4 h-4 text-blue-400"></i> Intended Level of Study
+                    </label>
+                    <select id="levelSelect" onchange="calculateEligibility()" class="w-full bg-slate-900 border border-slate-600 text-white rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-red-500 focus:outline-none">
+                        <option value="UG">Undergraduate (BSc / BEng)</option>
+                        <option value="PG">Postgraduate (MSc / MBA)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Calculated Output Card -->
+            <div id="calcResults" class="mt-6 bg-slate-950 p-6 rounded-xl border border-slate-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Dynamically Populated via JS -->
+            </div>
+        </section>
+
+        <!-- Tab Navigation Bar -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
+            <div class="flex border-b border-slate-200 min-w-max">
+                <button onclick="switchTab('ug')" id="tab-ug" class="tab-btn active px-5 py-4 text-sm font-semibold flex items-center gap-2 transition">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i> UG Programs
+                </button>
+                <button onclick="switchTab('pg')" id="tab-pg" class="tab-btn px-5 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-2 transition">
+                    <i data-lucide="briefcase" class="w-4 h-4"></i> PG Programs & Conversions
+                </button>
+                <button onclick="switchTab('entrance')" id="tab-entrance" class="tab-btn px-5 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-2 transition">
+                    <i data-lucide="file-text" class="w-4 h-4"></i> Entry Requirements & Test
+                </button>
+                <button onclick="switchTab('scholarships')" id="tab-scholarships" class="tab-btn px-5 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-2 transition">
+                    <i data-lucide="percent" class="w-4 h-4"></i> Scholarships & Discounts
+                </button>
+                <button onclick="switchTab('aps')" id="tab-aps" class="tab-btn px-5 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-2 transition">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i> Anabin & APS Guide
+                </button>
+                <button onclick="switchTab('visa')" id="tab-visa" class="tab-btn px-5 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-2 transition">
+                    <i data-lucide="plane-takeoff" class="w-4 h-4"></i> Visa & Blocked Account
+                </button>
+                <button onclick="switchTab('faculty')" id="tab-faculty" class="tab-btn px-5 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-2 transition">
+                    <i data-lucide="users" class="w-4 h-4"></i> Faculty & Leadership
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1: UG PROGRAMS -->
+        <div id="content-ug" class="tab-content space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="text-red-600"></i> Undergraduate Degree Portfolio (180 ECTS / 3 Years)
+                    </h3>
+                    <span class="text-xs bg-slate-100 text-slate-700 font-bold px-3 py-1 rounded-full">Potsdam & Berlin Campuses</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-6">All GISMA UG degrees are fully state-accredited in Germany, taught 100% in English, and include optional dual-degree tracks with leading global institutions.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-slate-200 rounded-xl p-5 bg-slate-50 hover:shadow-md transition">
+                        <span class="text-xs font-bold text-red-600 uppercase tracking-wide">BSc Degree</span>
+                        <h4 class="text-lg font-bold text-slate-900 mt-1">BSc Computer Science</h4>
+                        <p class="text-xs text-slate-500 mt-2">Focus on AI, Software Engineering, Cloud Computing, and Cybersecurity. Includes hands-on industry internship.</p>
+                        <div class="mt-4 pt-4 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                            <div><strong>Duration:</strong> 3 Years (6 Semesters)</div>
+                            <div><strong>Standard Fee:</strong> <span class="currency-eur">€13,125</span><span class="currency-inr hidden">₹11,81,250</span> / Year</div>
+                            <div><strong>Entry Route:</strong> Direct or Entrance Test</div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-5 bg-slate-50 hover:shadow-md transition">
+                        <span class="text-xs font-bold text-red-600 uppercase tracking-wide">BSc Degree</span>
+                        <h4 class="text-lg font-bold text-slate-900 mt-1">BSc Data Science, AI & Digital Business</h4>
+                        <p class="text-xs text-slate-500 mt-2">Combines big data analytics with corporate strategy and digital transformation tools.</p>
+                        <div class="mt-4 pt-4 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                            <div><strong>Duration:</strong> 3 Years (6 Semesters)</div>
+                            <div><strong>Standard Fee:</strong> <span class="currency-eur">€13,125</span><span class="currency-inr hidden">₹11,81,250</span> / Year</div>
+                            <div><strong>Entry Route:</strong> Direct or Entrance Test</div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-5 bg-slate-50 hover:shadow-md transition">
+                        <span class="text-xs font-bold text-red-600 uppercase tracking-wide">BSc Degree</span>
+                        <h4 class="text-lg font-bold text-slate-900 mt-1">BSc International Business Management</h4>
+                        <p class="text-xs text-slate-500 mt-2">Global marketing, finance, cross-cultural leadership, and supply chain strategies.</p>
+                        <div class="mt-4 pt-4 border-t border-slate-200 space-y-1.5 text-xs text-slate-700">
+                            <div><strong>Duration:</strong> 3 Years (6 Semesters)</div>
+                            <div><strong>Standard Fee:</strong> <span class="currency-eur">€13,125</span><span class="currency-inr hidden">₹11,81,250</span> / Year</div>
+                            <div><strong>Entry Route:</strong> Direct or Entrance Test</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foundation Notice -->
+                <div class="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl text-xs text-amber-900 space-y-1">
+                    <p class="font-bold flex items-center gap-1.5 text-amber-950">
+                        <i data-lucide="alert-triangle" class="w-4 h-4"></i> Foundation Year & APS Restrictions (Indian Applicants)
+                    </p>
+                    <p>Under current German APS guidelines for India, Foundation Programs (Studienkolleg/Preparatory) are <strong>not eligible for APS verification</strong> for Indian Higher Secondary Certificates. Applicants from India must qualify for direct entry (CBSE/ICSE/State Board with GISMA Entrance Test) or complete 1 Year of Bachelor's degree in India before applying.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: PG PROGRAMS & CONVERSIONS -->
+        <div id="content-pg" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="briefcase" class="text-red-600"></i> Postgraduate Portfolio & Non-Business Conversion Rules
+                    </h3>
+                    <span class="text-xs bg-slate-100 text-slate-700 font-bold px-3 py-1 rounded-full">60, 90 & 120 ECTS Tracks</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="border border-slate-200 rounded-xl p-5 bg-slate-50">
+                        <span class="text-xs font-bold text-blue-600 uppercase">Master of Science</span>
+                        <h4 class="text-base font-bold text-slate-900 mt-1">MSc Computer Science</h4>
+                        <p class="text-xs text-slate-500 mt-1">Advanced AI, distributed systems, software architecture.</p>
+                        <div class="mt-4 text-xs space-y-1">
+                            <div><strong>Standard Fee:</strong> <span class="currency-eur">€15,500</span><span class="currency-inr hidden">₹13,95,000</span> / year</div>
+                            <div><strong>ECTS:</strong> 120 ECTS (2 Years) / 60 ECTS Track Available</div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-5 bg-slate-50">
+                        <span class="text-xs font-bold text-blue-600 uppercase">Master of Science</span>
+                        <h4 class="text-base font-bold text-slate-900 mt-1">MSc Leadership & Digital Business</h4>
+                        <p class="text-xs text-slate-500 mt-1">Strategic transformation, agile management, digital models.</p>
+                        <div class="mt-4 text-xs space-y-1">
+                            <div><strong>Standard Fee:</strong> <span class="currency-eur">€15,500</span><span class="currency-inr hidden">₹13,95,000</span> / year</div>
+                            <div><strong>ECTS:</strong> 90 / 120 ECTS</div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-5 bg-slate-50">
+                        <span class="text-xs font-bold text-amber-600 uppercase">Flagship Degree</span>
+                        <h4 class="text-base font-bold text-slate-900 mt-1">GISMA Global MBA</h4>
+                        <p class="text-xs text-slate-500 mt-1">AMBA accredited, executive leadership, global strategy.</p>
+                        <div class="mt-4 text-xs space-y-1">
+                            <div><strong>Standard Fee:</strong> <span class="currency-eur">€18,000</span><span class="currency-inr hidden">₹16,20,000</span> total</div>
+                            <div><strong>Work Exp:</strong> 3 Years relevant experience required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Non-Business Conversion Guidelines -->
+                <div class="bg-slate-900 text-white rounded-xl p-6">
+                    <h4 class="text-base font-bold flex items-center gap-2 mb-3">
+                        <i data-lucide="arrow-right-left" class="text-amber-400"></i> Non-Business Background Conversion Rules
+                    </h4>
+                    <p class="text-xs text-slate-300 mb-4">Applicants holding non-business undergraduate degrees (e.g. Engineering, Arts, Humanities, Science) can qualify for GISMA Business Masters or MBA through our conversion pathways:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h5 class="font-bold text-amber-400 mb-1">1. Pre-Masters Foundation Module</h5>
+                            <p class="text-slate-300">A 1-semester preparatory path covering fundamental economics, accounting, and business administration principles before joining the core Master's program.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h5 class="font-bold text-amber-400 mb-1">2. Work Experience Waiver</h5>
+                            <p class="text-slate-300">If you have at least 1-2 years of full-time professional experience in a commercial, managerial, or analytical role, the academic field restriction is waived.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: ENTRANCE TEST -->
+        <div id="content-entrance" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <i data-lucide="file-text" class="text-red-600"></i> GISMA Internal Entrance Test & English Proficiency
+                </h3>
+                <p class="text-xs text-slate-600 mb-6">Applicants without standard English certificates (IELTS/TOEFL) or needing academic qualification verification must complete the proctored GISMA Entrance Assessment.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded w-fit mb-3">Module 1</div>
+                        <h4 class="font-bold text-slate-900 text-sm">Password English Test</h4>
+                        <p class="text-xs text-slate-600 mt-2">Assesses Reading, Writing, Listening, and Grammar. Equivalent to IELTS 6.0 - 6.5 standards. Fully online & proctored.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded w-fit mb-3">Module 2</div>
+                        <h4 class="font-bold text-slate-900 text-sm">16-Question Mathematics Test</h4>
+                        <p class="text-xs text-slate-600 mt-2">Multiple-choice quantitative test testing high-school algebra, arithmetic, logic, and data interpretation.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded w-fit mb-3">Module 3</div>
+                        <h4 class="font-bold text-slate-900 text-sm">Academic Essay (300+ Words)</h4>
+                        <p class="text-xs text-slate-600 mt-2">Timed written assessment evaluating logical argumentation, structured thought, and formal academic writing skills.</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-xs text-red-900 flex items-start gap-3">
+                    <i data-lucide="info" class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <strong>Proctoring & Retake Regulations:</strong>
+                        <p class="mt-1">Tests are webcam-monitored. A fee of <strong>€50</strong> applies for test retakes if an applicant fails to meet the minimum threshold on the first attempt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: SCHOLARSHIPS -->
+        <div id="content-scholarships" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <i data-lucide="percent" class="text-red-600"></i> GISMA & GUS Germany GmbH (GGG) Scholarship Directory
+                </h3>
+                <p class="text-xs text-slate-600 mb-6">Discounts and funding opportunities available across GISMA and partner GGG institutions.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-slate-900 text-sm">High Achiever Scholarship</h4>
+                            <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-0.5 rounded">Up to 50% Off</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Awarded automatically to students scoring >89.01% in prior academic studies. Applied directly against tuition fee structure.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-slate-900 text-sm">Women in Tech Leadership</h4>
+                            <span class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-0.5 rounded">50% - 100% Off</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Designed to encourage female participation in BSc/MSc Computer Science and Data Science degrees. Requires personal statement.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-slate-900 text-sm">Think Digital Award</h4>
+                            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-0.5 rounded">€1,000 Lump Sum</span>
+                        </div>
+                        <p class="text-xs text-slate-600">One-time deduction granted to early applicants who demonstrate passion for digital innovation.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-slate-900 text-sm">GGG Sibling & Spouse Award</h4>
+                            <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded">35% Tuition Waiver</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Applicable if a family member is currently enrolled in or graduated from any GUS Germany GmbH (GGG) brand institution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: ANABIN & APS -->
+        <div id="content-aps" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <i data-lucide="shield-check" class="text-red-600"></i> Anabin University Database & APS Verification Step-by-Step
+                </h3>
+                <p class="text-xs text-slate-600 mb-6">Mandatory academic verification procedures for Indian, Chinese, and Vietnamese applicants entering German Higher Education.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Anabin Guide -->
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50 space-y-3">
+                        <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                            <i data-lucide="database" class="w-4 h-4 text-blue-600"></i> Anabin Status Guide
+                        </h4>
+                        <p class="text-xs text-slate-600">Check if your previous university is recognized by the German Ministry of Education:</p>
+                        <ul class="text-xs space-y-2 text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <span class="bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">H+</span>
+                                <span><strong>H+:</strong> Institution fully recognized. Direct master's eligibility.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded">H+/-</span>
+                                <span><strong>H+/-:</strong> Conditional recognition. Specific degree course evaluation required.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="bg-red-100 text-red-800 font-bold px-1.5 py-0.5 rounded">H-</span>
+                                <span><strong>H-:</strong> Not recognized in Germany.</span>
+                            </li>
+                        </ul>
+                        <a href="https://anabin.kmk.org" target="_blank" class="inline-flex items-center gap-1 text-xs text-blue-600 font-bold hover:underline pt-2">
+                            Open Official Anabin Portal <i data-lucide="external-link" class="w-3 h-3"></i>
+                        </a>
+                    </div>
+
+                    <!-- APS Steps -->
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50 space-y-3">
+                        <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i> APS India Certificate Token Process
+                        </h4>
+                        <div class="text-xs space-y-2 text-slate-700">
+                            <div class="flex justify-between border-b pb-1">
+                                <span>APS Verification Fee:</span>
+                                <strong>₹18,000 (~€200)</strong>
+                            </div>
+                            <div class="flex justify-between border-b pb-1">
+                                <span>Processing Time:</span>
+                                <strong>3 to 6 Weeks</strong>
+                            </div>
+                            <p class="pt-1"><strong>Required Checklist:</strong> Printed online form, signed consent letter, marksheets, degree certificate, Professor email verification token, and IELTS/GISMA test copy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: VISA & BLOCKED ACCOUNT -->
+        <div id="content-visa" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <i data-lucide="plane-takeoff" class="text-red-600"></i> German Student Visa & Blocked Account Guidelines 2026
+                </h3>
+                <p class="text-xs text-slate-600 mb-6">Financial proof and embassy requirements for international student visa applications.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="text-amber-600 font-bold text-xl mb-1">€11,904</div>
+                        <h4 class="font-bold text-slate-900 text-sm">German Blocked Account</h4>
+                        <p class="text-xs text-slate-600 mt-2">Required standard amount for 1-year living expenses. Allows monthly withdrawals of <strong>€992/month</strong> upon arrival in Germany.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="text-blue-600 font-bold text-xl mb-1">€75</div>
+                        <h4 class="font-bold text-slate-900 text-sm">National Visa Fee</h4>
+                        <p class="text-xs text-slate-600 mt-2">Standard processing fee for Long-Stay National Student Visa (Type D) payable at VFS Global / German Embassy.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <div class="text-emerald-600 font-bold text-xl mb-1">4 - 8 Weeks</div>
+                        <h4 class="font-bold text-slate-900 text-sm">Average Processing Time</h4>
+                        <p class="text-xs text-slate-600 mt-2">Varies by jurisdiction. Applicants from India, Pakistan, and Nigeria should apply at least 8 weeks prior to intake.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 border-t border-slate-200 pt-4 flex justify-between items-center text-xs">
+                    <span class="text-slate-500">Official German Visa Portal Link:</span>
+                    <a href="https://india.diplo.de" target="_blank" class="text-red-600 font-bold flex items-center gap-1 hover:underline">
+                        Visit German Embassy India (diplo.de) <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: FACULTY -->
+        <div id="content-faculty" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <i data-lucide="users" class="text-red-600"></i> GISMA Academic Leadership & Faculty Directory
+                </h3>
+                <p class="text-xs text-slate-600 mb-6">Learn from experienced academic leaders and industry professionals driving innovation at GISMA.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <h4 class="font-bold text-slate-900 text-sm">Prof. Dr. Peter Konhaeusner</h4>
+                        <p class="text-xs text-red-600 font-semibold">Professor of Digital Entrepreneurship</p>
+                        <p class="text-xs text-slate-500 mt-2">Expert in digital business models, startup ecosystem scaling, and international management.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <h4 class="font-bold text-slate-900 text-sm">Prof. Dr. Stefan Diestel</h4>
+                        <p class="text-xs text-red-600 font-semibold">Professor of Organizational Psychology</p>
+                        <p class="text-xs text-slate-500 mt-2">Specialist in workplace health, leadership behavior, and organizational performance dynamics.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <h4 class="font-bold text-slate-900 text-sm">Prof. Dr. Sara Castro-Barquero</h4>
+                        <p class="text-xs text-red-600 font-semibold">Professor of Data Science & AI</p>
+                        <p class="text-xs text-slate-500 mt-2">Leading researcher in machine learning applications, predictive analytics, and ethics in AI.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <h4 class="font-bold text-slate-900 text-sm">Prof. Dr. Maurizio Pompili</h4>
+                        <p class="text-xs text-red-600 font-semibold">Professor of Finance & Economics</p>
+                        <p class="text-xs text-slate-500 mt-2">Focus on global financial markets, corporate valuation, and sustainable economic policy.</p>
+                    </div>
+
+                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50">
+                        <h4 class="font-bold text-slate-900 text-sm">Hugh Gordon-Brown</h4>
+                        <p class="text-xs text-red-600 font-semibold">Managing Director / Academic Operations</p>
+                        <p class="text-xs text-slate-500 mt-2">Overseeing strategic development, international university alliances, and campus operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <p>© 2026 GISMA University of Applied Sciences | Member of GUS Germany GmbH (GGG).</p>
+            <p>Official Links: <a href="https://www.gisma.com" target="_blank" class="text-slate-300 hover:underline">gisma.com</a> | <a href="https://anabin.kmk.org" target="_blank" class="text-slate-300 hover:underline">anabin.kmk.org</a> | <a href="https://india.diplo.de" target="_blank" class="text-slate-300 hover:underline">india.diplo.de</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Currency Toggle State
+        let currentCurrency = 'EUR'; // 'EUR' or 'INR'
+        const EUR_TO_INR = 90;
+
+        // Data Matrix for Calculation Logic
+        const countryData = {
+            'India': { aps: true, depositUG: 'Full 1-Year', depositPG: 3000, regionalDiscount: 30, highAchieverExtra: 20 },
+            'Pakistan': { aps: false, depositUG: 'Full 1-Year', depositPG: 3000, regionalDiscount: 25, highAchieverExtra: 20 },
+            'Bangladesh': { aps: false, depositUG: 'Full 1-Year', depositPG: 3000, regionalDiscount: 25, highAchieverExtra: 20 },
+            'Nepal': { aps: false, depositUG: 'Full 1-Year', depositPG: 3000, regionalDiscount: 25, highAchieverExtra: 20 },
+            'Nigeria': { aps: false, depositUG: 'Full 1-Year', depositPG: 3000, regionalDiscount: 30, highAchieverExtra: 20 },
+            'Vietnam': { aps: true, depositUG: 'Standard €3,000', depositPG: 3000, regionalDiscount: 25, highAchieverExtra: 20 },
+            'China': { aps: true, depositUG: 'Standard €3,000', depositPG: 3000, regionalDiscount: 20, highAchieverExtra: 25 },
+            'Philippines': { aps: false, depositUG: 'Standard €2,000', depositPG: 2000, regionalDiscount: 25, highAchieverExtra: 20 },
+            'Turkey': { aps: false, depositUG: 'Standard €2,000', depositPG: 2000, regionalDiscount: 20, highAchieverExtra: 20 },
+            'USA': { aps: false, depositUG: 'Standard €1,500', depositPG: 1500, regionalDiscount: 15, highAchieverExtra: 20 },
+            'UK': { aps: false, depositUG: 'Standard €1,500', depositPG: 1500, regionalDiscount: 15, highAchieverExtra: 20 },
+            'LATAM': { aps: false, depositUG: 'Standard €2,000', depositPG: 2000, regionalDiscount: 25, highAchieverExtra: 25 },
+            'Post-Soviet': { aps: false, depositUG: 'Standard €2,000', depositPG: 2000, regionalDiscount: 25, highAchieverExtra: 20 },
+            'SEA': { aps: false, depositUG: 'Standard €2,000', depositPG: 2000, regionalDiscount: 25, highAchieverExtra: 20 },
+            'MENA': { aps: false, depositUG: 'Standard €2,500', depositPG: 2500, regionalDiscount: 25, highAchieverExtra: 20 },
+            'EU': { aps: false, depositUG: 'Standard €1,500', depositPG: 1500, regionalDiscount: 10, highAchieverExtra: 20 }
+        };
+
+        const scoreTiers = {
+            'tier1': { discountPct: 50, route: 'Direct Entry + High Achiever Scholarship', status: 'Eligible' },
+            'tier2': { discountPct: 35, route: 'Direct Entry + Standard Merit Discount', status: 'Eligible' },
+            'tier3': { discountPct: 25, route: 'Entrance Test Mandatory', status: 'Eligible with Test' },
+            'tier4': { discountPct: 15, route: 'Entrance Test + Pre-sessional Required', status: 'Conditional' },
+            'tier5': { discountPct: 0, route: 'Foundation / Individual Academic Review Required', status: 'Review Required' }
+        };
+
+        function formatMoney(eurVal) {
+            if (currentCurrency === 'INR') {
+                return '₹' + (eurVal * EUR_TO_INR).toLocaleString('en-IN');
+            }
+            return '€' + eurVal.toLocaleString('en-US');
+        }
+
+        function calculateEligibility() {
+            const country = document.getElementById('countrySelect').value;
+            const score = document.getElementById('scoreSelect').value;
+            const level = document.getElementById('levelSelect').value;
+
+            const cDetails = countryData[country] || countryData['India'];
+            const sDetails = scoreTiers[score];
+
+            const baseTuition = (level === 'UG') ? 13125 : 15500;
+            const discountPct = Math.min(sDetails.discountPct, 50); // capped at 50%
+            const discountAmount = Math.round(baseTuition * (discountPct / 100));
+            const netTuition = baseTuition - discountAmount;
+
+            let depositDisplay = '';
+            if (level === 'UG') {
+                if (cDetails.depositUG === 'Full 1-Year') {
+                    depositDisplay = `${formatMoney(netTuition)} (Full 1st Year Upfront)`;
+                } else {
+                    depositDisplay = cDetails.depositUG;
+                }
+            } else {
+                depositDisplay = formatMoney(cDetails.depositPG);
+            }
+
+            const calcResults = document.getElementById('calcResults');
+            calcResults.innerHTML = `
+                <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
+                    <span class="text-xs text-slate-400 block font-semibold">Academic Entry Route</span>
+                    <span class="text-sm font-bold text-amber-400 mt-1 block">${sDetails.route}</span>
+                    ${cDetails.aps ? '<span class="inline-block mt-2 text-[10px] bg-red-900/80 text-red-200 font-bold px-2 py-0.5 rounded border border-red-700">APS Mandatory</span>' : ''}
+                </div>
+
+                <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
+                    <span class="text-xs text-slate-400 block font-semibold">Estimated Tuition & Discount</span>
+                    <span class="text-sm font-bold text-emerald-400 mt-1 block">${discountPct}% Waiver (${formatMoney(discountAmount)})</span>
+                    <span class="text-xs text-slate-300">Net Fee: <strong>${formatMoney(netTuition)}</strong> / Year</span>
+                </div>
+
+                <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
+                    <span class="text-xs text-slate-400 block font-semibold">Tuition Deposit Required</span>
+                    <span class="text-sm font-bold text-blue-400 mt-1 block">${depositDisplay}</span>
+                    <span class="text-xs text-slate-400">Before CAS / Visa Letter issuance</span>
+                </div>
+
+                <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
+                    <span class="text-xs text-slate-400 block font-semibold">Foundation Eligibility</span>
+                    <span class="text-sm font-bold ${country === 'India' && level === 'UG' ? 'text-red-400' : 'text-emerald-400'} mt-1 block">
+                        ${country === 'India' && level === 'UG' ? 'Not Available (APS Restriction)' : 'Available if Needed'}
+                    </span>
+                    <span class="text-xs text-slate-400">${country === 'India' ? 'Indian HSC must go direct / 1-yr UG' : 'Standard German path'}</span>
+                </div>
+            `;
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+        }
+
+        function toggleCurrency() {
+            currentCurrency = currentCurrency === 'EUR' ? 'INR' : 'EUR';
+            const btn = document.getElementById('currencyToggleBtn');
+
+            if (currentCurrency === 'INR') {
+                btn.innerHTML = `<i data-lucide="coins" class="w-4 h-4"></i> View in EUR (€)`;
+                document.querySelectorAll('.currency-eur').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('.currency-inr').forEach(el => el.classList.remove('hidden'));
+            } else {
+                btn.innerHTML = `<i data-lucide="coins" class="w-4 h-4"></i> View in INR (₹)`;
+                document.querySelectorAll('.currency-inr').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('.currency-eur').forEach(el => el.classList.remove('hidden'));
+            }
+            calculateEligibility();
+            lucide.createIcons();
+        }
+
+        // Initialize Lucide icons & default calculation on load
+        window.onload = function() {
+            lucide.createIcons();
+            calculateEligibility();
+        };
+    </script>
+</body>
+</html>
